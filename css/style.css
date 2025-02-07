@@ -1,0 +1,199 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body Background */
+body {
+    background-color: #161E27; /* #f0f4f8 Light Blue-Gray */
+}
+
+/* Top Bar Style */
+.top-bar {
+    background-color: #003366; /* Dark Blue */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Menu Bar Style */
+.menu-bar {
+    background-color: #336699; /* Medium Blue */
+    display: flex;
+    /* justify-content: center; */
+    padding: 20px 0;
+}
+
+.menu-link {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 5px 10px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.menu-link:hover {
+    background-color: #6699cc; /* Light Blue */
+    border-radius: 5px;
+}
+
+/* Content Area */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* 
+***********************
+        Tables
+***********************
+*/
+/* Table Container */
+.table-container {
+    padding: 20px;
+    overflow-x: auto; /* Allows horizontal scrolling on smaller screens */
+}
+
+/* Table Style */
+.customer-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Header */
+.customer-table thead {
+    background-color: #3a6073; /* Dark blue for header background */
+    color: #ffffff; /* White text */
+}
+
+.customer-table th {
+    padding: 12px;
+    text-align: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Table Rows */
+.customer-table tbody tr:nth-child(even) {
+    background-color: #eaf3f8; /* Light blue for alternating rows */
+}
+
+.customer-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.customer-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover Effect */
+.customer-table tbody tr:hover {
+    background-color: #d1e7f3; /* Slightly darker blue on hover */
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .customer-table th, .customer-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+/* 
+***********************
+        Forms
+***********************
+*/
+
+/* Form Container */
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Form Labels */
+.form-container label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Form Inputs */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container select:focus {
+    border-color: #3a6073; /* Dark blue on focus */
+    outline: none;
+}
+
+/* 
+***********************
+        Buttons
+***********************
+*/
+
+/* Button container */
+.button-container {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* Basic button style */
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #283c53; /* Darker shade of blue */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Primary button (for New Customer) */
+.btn-primary {
+    background-color: #41688b; /* Lighter shade of blue */
+}
+
+/* Hover effect */
+.btn:hover {
+    background-color: #1a2a3b; /* Even darker blue for hover */
+}
+
+.btn-primary:hover {
+    background-color: #365f7b;
+}
