@@ -3,20 +3,20 @@
 namespace App\Controllers;
 
 use App\Models\Customer;
-use App\Models\CustomerModel;
+use App\Services\CustomerService;
 use App\Views\CustomerView;
 
 class CustomersController {
     
-    private $model;
+    private $service;
 
     public function __construct() {
-        $this->model = new CustomerModel();
-        $this->model->loadCustomers(); // Load initial data from the database
+        $this->service = new CustomerService();
+        $this->service->loadCustomers(); // Load initial data from the database
     }
 
     public function index($msg = null) {
-        $customers = $this->model->getAllCustomers();        
+        $customers = $this->service->getAllCustomers();        
         CustomerView::render('list', $customers, $msg);
     }
 
@@ -56,7 +56,7 @@ class CustomersController {
             exit;
         }
 
-        $this->model->createCustomer($name, $email, $address, $addressType);
+        $this->service->createCustomer($name, $email, $address, $addressType);
 
         //Redirect to prevent form resubmission
         //header("Location: " . $_SERVER['PHP_SELF']);
@@ -64,7 +64,7 @@ class CustomersController {
     }
 
     public function edit($id) {
-        $customer = $this->model->getCustomerById($id);
+        $customer = $this->service->getCustomerById($id);
         CustomerView::renderFull('edit', $customer, '');
     }
 
@@ -76,7 +76,7 @@ class CustomersController {
         $address = isset($_POST['address']) ? $_POST['address'] : NULL;
         //$addressType = isset($_POST['addressType']) ? $_POST['addressType'] : NULL;
 
-        //$customer = $this->model->getCustomerById($id);
+        //$customer = $this->service->getCustomerById($id);
         $customer = new Customer ($id, $name, $email);
 
         // Validate input
@@ -102,8 +102,8 @@ class CustomersController {
             exit;
         }
 
-        //$this->model->updateCustomer($id, $name, $email);
-        $this->model->updateCustomer($id, $name, $email);
+        //$this->service->updateCustomer($id, $name, $email);
+        $this->service->updateCustomer($id, $name, $email);
 
         //header("Location: /customer");
         header("Location: " . BASE_URL . "customers");
@@ -118,7 +118,7 @@ class CustomersController {
             exit;
         }
        
-        $delResult = $this->model->deleteCustomer($_POST['id']);
+        $delResult = $this->service->deleteCustomer($_POST['id']);
         
         echo json_encode(['success' => $_POST['id']]);
     }

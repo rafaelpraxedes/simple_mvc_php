@@ -1,11 +1,13 @@
 <?php
-// app/models/CustomerModel.php
-namespace App\Models;
+// app/Service/CustomerService.php
+namespace App\Services;
 
+use App\Models\Customer;
+use App\Models\Address;
 use App\ORM\CustomerRepository;
 use App\ORM\AddressRepository;
 
-class CustomerModel {
+class CustomerService {
     
     private $customers = [];
     private $customerRepository;
