@@ -13,11 +13,15 @@
 //var_dump($uri);
 //var_dump('<br>');
 //var_dump($requestMethod);
+//var_dump('<br>');
 
     if ($requestMethod === 'POST') {
             
         $action = isset($_POST['action']) ? $_POST['action'] : 'no action';
-        
+
+//var_dump($action);
+//var_dump('<br>');
+
         switch ($action) {
             case 'new':
                 $customersController->new();
@@ -26,6 +30,9 @@
                 $customersController->create();
                 break;
             case 'update':
+
+                var_dump($_POST);
+
                 $customersController->update();
                 break;
             case 'delete':
@@ -36,22 +43,28 @@
                 break;
         }
     } else {
-        
+
         switch ($uri) {
-            case 'crm_app':
+            case APP_ROOT:
                 $mainController->index();
-                break;
-            case 'crm_app/customers':
+                exit;
+            case APP_ROOT . '/customers':
                 $customersController->index();
-                break;
-            case 'crm_app/customers/new':
+                exit;
+            case APP_ROOT . '/customers/new':
                 $customersController->new();
-                break;
-            default:
-                $mainController->notFound();
-                break;
+                exit;
         }
 
+        // Handle dynamic route: /customers/detail/{id}
+        if (preg_match('#^' . APP_ROOT . '/customers/edit/([0-9]+)$#', $uri, $matches)) {
+            $customerId = (int) $matches[1]; // Extract ID from URL
+            $customersController->edit($customerId);
+            exit;
+        }
+
+        // Default case: 404 Not Found
+        $mainController->notFound();        
     }
     
 ?>

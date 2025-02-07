@@ -15,7 +15,7 @@ class CustomerView {
         ob_start();
         
         // Load the specific view content
-        require BASE_PATH . "/views/{$view}.php";
+        require BASE_PATH . "/views/customers/{$view}.php";
         
         // Store the output of the view content
         $viewContent = ob_get_clean();
@@ -28,7 +28,7 @@ class CustomerView {
     public static function renderFull($view, $customers, $message) {
 
         // Include the view file, assuming the view path is relative to a "views" folder
-        require BASE_PATH . '/views/' . $view . '.php';
+        require BASE_PATH . '/views/customers/' . $view . '.php';
 
     }    
 }

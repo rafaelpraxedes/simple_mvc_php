@@ -46,7 +46,7 @@ class CustomerRepository {
         }
         $stmt->bindParam(':name', $customer->name);
         $stmt->bindParam(':email', $customer->email);
-        $stmt->execute();
+        $res = $stmt->execute();
 
         if (!isset($customer->id)) {
             $customer->id = $this->dbConn->lastInsertId();

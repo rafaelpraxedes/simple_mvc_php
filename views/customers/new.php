@@ -1,4 +1,4 @@
-<!-- create_customer.php -->
+<!-- views/customer/new.php -->
 <!DOCTYPE html>
 <html lang="en">
 <head>

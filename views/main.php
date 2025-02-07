@@ -14,7 +14,7 @@
     <div class="menu-bar">
         <a href="<?= BASE_URL ?>" class="menu-link">Home</a>
         <a href="customers" class="menu-link">Customers</a>
-        <a href="services" class="menu-link">Services</a>
+        <!--<a href="services" class="menu-link">Services</a>-->
     </div>
     <div class="content">
         <?= $viewContent ?? '' ?>

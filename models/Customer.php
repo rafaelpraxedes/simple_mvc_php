@@ -21,6 +21,14 @@ class Customer {
     public function getName() { return $this->name; }
     public function getEmail() { return $this->email; }
 
+    public function getAddress() { 
+        foreach ($this->addresses as $address) {
+            return $address->getAddress();
+            break; // gest first address
+        }
+
+    }
+
     public function getAddresses() { return $this->addresses; }
     public function setAddresses($addresses) { $this->addresses = $addresses; }
 }

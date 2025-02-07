@@ -36,6 +36,8 @@ class CustomerModel {
     public function getCustomerById($id) {
         foreach ($this->customers as $customer) {            
             if ($customer->id == $id) {
+                $addresses = $this->addressRepository->findByCustomerId($id);
+                $customer->setAddresses($addresses);
                 return $customer;
             }
         }

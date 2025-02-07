@@ -2,6 +2,7 @@
 // app/controllers/CustomersController.php
 namespace App\Controllers;
 
+use App\Models\Customer;
 use App\Models\CustomerModel;
 use App\Views\CustomerView;
 
@@ -16,19 +17,12 @@ class CustomersController {
 
     public function index($msg = null) {
         $customers = $this->model->getAllCustomers();        
-        //require BASE_PATH . '/Views/customers_list.php';
-        CustomerView::render('customers_list', $customers, $msg);
-    }
-
-    public function show($id) {
-        $customer = $this->model->getCustomerById($id);
-        CustomerView::render('customers_list', $customer, '');
+        CustomerView::render('list', $customers, $msg);
     }
 
     public function new() {
         // Display the create customer form
-        //CustomerView::render('customers_create', null, '');
-        CustomerView::renderFull('customers_create', null, '');
+        CustomerView::renderFull('new', null, '');
     }
     
     public function create() {
@@ -39,13 +33,13 @@ class CustomersController {
         $addressType = isset($_POST['addressType']) ? $_POST['addressType'] : NULL;
         
         // Validate input
-        if (empty($name)    || 
-            empty($email)   ||
+        if (empty($name)     || 
+            empty($email)    ||
             empty($address ) ||
             empty($addressType) 
            ) {
             $message = "Mandatory fields can not be empty.";
-            CustomerView::renderFull('customers_create', null , $message);
+            CustomerView::renderFull('new', null , $message);
             exit;
         }        
         
@@ -58,7 +52,7 @@ class CustomersController {
         // Validate the email
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $message = "Invalid email format.";
-            CustomerView::renderFull('customers_create', null, $message);
+            CustomerView::renderFull('new', null, $message);
             exit;
         }
 
@@ -69,9 +63,50 @@ class CustomersController {
         header("Location: " . BASE_URL . "customers");
     }
 
-    public function update($id, $name, $email) {
+    public function edit($id) {
+        $customer = $this->model->getCustomerById($id);
+        CustomerView::renderFull('edit', $customer, '');
+    }
+
+    public function update() {
+
+        $id = isset($_POST['id']) ? $_POST['id'] : NULL;
+        $name = isset($_POST['name']) ? $_POST['name'] : NULL;
+        $email = isset($_POST['email']) ? $_POST['email'] : NULL;
+        $address = isset($_POST['address']) ? $_POST['address'] : NULL;
+        //$addressType = isset($_POST['addressType']) ? $_POST['addressType'] : NULL;
+
+        //$customer = $this->model->getCustomerById($id);
+        $customer = new Customer ($id, $name, $email);
+
+        // Validate input
+        if (empty($name)     || 
+            empty($email)    ||
+            empty($address )
+           ) {
+            $message = "Mandatory fields can not be empty.";
+            CustomerView::renderFull('edit', $customer , $message);
+            exit;
+        }        
+        
+        // Sanitize the input        
+        $name = $this->sanitizeInput($name);
+        $email = $this->sanitizeInput($email);
+        $address = $this->sanitizeInput($address);
+        //$addressType = $this->sanitizeInput($addressType);
+
+        // Validate the email
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $message = "Invalid email format.";
+            CustomerView::renderFull('edit', $customer, $message);
+            exit;
+        }
+
+        //$this->model->updateCustomer($id, $name, $email);
         $this->model->updateCustomer($id, $name, $email);
-        header("Location: /customer");
+
+        //header("Location: /customer");
+        header("Location: " . BASE_URL . "customers");
     }
     
     public function delete() {

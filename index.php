@@ -8,6 +8,7 @@
     date_default_timezone_set('America/Los_Angeles');
     
     define('BASE_PATH', __DIR__);
+    define('APP_ROOT', basename(__DIR__));
 
     $baseUrl = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/') . '/';
     define('BASE_URL', $baseUrl);

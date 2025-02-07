@@ -1,4 +1,4 @@
-<!-- views/customers_list.php -->
+<!-- views/customers/list.php -->
 <?php 
 
     // HTML Table & Styles
@@ -20,9 +20,9 @@
         
         $id = $customer->getId();
         
-        $url = "./customer_update.php?id=" . $id;
+        $url = BASE_URL . "customers/edit/" . $id;
         $url2 = "<a href='" . $url . "'>" . $id . "</a>";
-       
+
         $res_table .= $table_body_td . $url2 . "</td>";
         $res_table .= $table_body_td . $customer->getName() . "</td>";
         $res_table .= $table_body_td . $customer->getEmail() . "</td>";
